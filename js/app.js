@@ -7,4 +7,20 @@
     },
   });
   var task = new Task();
+
+  // View
+  var TaskView = Backbone.View.extend({
+    tagName: 'li',
+    className: 'taskClass',
+    template: _.template("<%- title %>"),
+    render: function(){
+      var template = this.template(this.model.toJSON());
+      this.$el.html(template);
+      return this;
+    }
+
+  });
+  var taskView = new TaskView({model: task}); // model instance
+  console.log(taskView.render().el);
+
 })();
