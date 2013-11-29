@@ -5,6 +5,11 @@
       title: 'do something!',
       completed: false
     },
+    validate : function(attrs){
+      if(_.isEmpty(attrs.title)){
+        return 'Title must not be empty!';
+      }
+    },
     toggle : function(){
       this.set('completed', !this.get('completed'));
     }
@@ -20,4 +25,7 @@
   task2.set('title', 'new Title');
   var title = task2.get('title');
   console.log(title);
+  console.log(task2.toJSON());
+  task2.set({title: ''}, {validate: true});
+  console.log(task2.toJSON());
 })();
